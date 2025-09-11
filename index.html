@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TathyaUniverse - India's Most Comprehensive IPO Platform</title>
+    <meta name="description" content="TathyaUniverse provides real-time IPO data, advanced analytics, and expert insights to help you make informed investment decisions in the Indian stock market.">
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Light mode colors */
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --accent-color: #fbbf24;
+            --background-color: #111827;
+            --surface-color: #1f2937;
+            --text-color: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--surface-color) 0%, var(--background-color) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        /* IPO Section */
+        .ipo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ipo-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .ipo-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .company-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .ipo-details {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .ipo-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .price-band {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .status-open {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-upcoming {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .feature-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Market Analysis Tabs */
+        .tabs {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: var(--border-color);
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            padding: 2rem;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .tab-items {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .tab-item {
+            padding: 1rem;
+            background: var(--background-color);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tab-item h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info i {
+            color: var(--primary-color);
+            width: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+            }
+
+            .ipo-grid,
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">
+                <i class="fas fa-chart-line"></i>
+                TathyaUniverse
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#ipo-section">IPOs</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#ipo-market">Market Analysis</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>India's Most Comprehensive IPO Platform</h1>
+            <p>TathyaUniverse provides real-time IPO data, advanced analytics, and expert insights to help you make informed investment decisions in the Indian stock market.</p>
+            <div class="cta-buttons">
+                <a href="#admin" class="btn btn-primary">
+                    <i class="fas fa-lock"></i>
+                    Admin Panel
+                </a>
+                <a href="#api-docs" class="btn btn-secondary">
+                    <i class="fas fa-code"></i>
+                    API Documentation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IPO Section -->
+    <section id="ipo-section" class="section">
+        <div class="container">
+            <h2 class="section-title">Latest IPOs</h2>
+            <div class="ipo-grid">
+                <div class="ipo-card">
+                    <div class="company-header">
+                        <img src="https://placehold.co/50x50?text=Tata+Tech+Logo+Modern+Corporate+Design" alt="Tata Technologies Logo" class="company-logo">
+                        <h3 class="company-name">Tata Technologies Ltd</h3>
+                    </div>
+                    <div class="ipo-details">
+                        <div class="ipo-detail">
+                            <span class="detail-label">Issue Size</span>
+                            <span class="detail-value">₹9,500 Cr</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Price Band</span>
+                            <span class="detail-value price-band">₹475 - ₹500</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Open Date</span>
+                            <span class="detail-value">Nov 22, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Close Date</span>
+                            <span class="detail-value">Nov 26, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Status</span>
+                            <span class="status-open">Open</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ipo-card">
+                    <div class="company-header">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a155aeba-e31e-4645-8221-2639f2b750c4.png" alt="IREDA Logo" class="company-logo">
+                        <h3 class="company-name">Indian Renewable Energy Development Agency</h3>
+                    </div>
+                    <div class="ipo-details">
+                        <div class="ipo-detail">
+                            <span class="detail-label">Issue Size</span>
+                            <span class="detail-value">₹2,377 Cr</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Price Band</span>
+                            <span class="detail-value price-band">₹30 - ₹32</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Open Date</span>
+                            <span class="detail-value">Nov 29, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Close Date</span>
+                            <span class="detail-value">Dec 01, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Status</span>
+                            <span class="status-upcoming">Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ipo-card">
+                    <div class="company-header">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1ba826aa-97a5-4755-b0c5-e5176830ca16.png" alt="GO Digit Insurance Logo" class="company-logo">
+                        <h3 class="company-name">GO Digit General Insurance</h3>
+                    </div>
+                    <div class="ipo-details">
+                        <div class="ipo-detail">
+                            <span class="detail-label">Issue Size</span>
+                            <span class="detail-value">₹3,350 Cr</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Price Band</span>
+                            <span class="detail-value price-band">₹361 - ₹380</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Open Date</span>
+                            <span class="detail-value">Dec 05, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Close Date</span>
+                            <span class="detail-value">Dec 09, 2024</span>
+                        </div>
+                        <div class="ipo-detail">
+                            <span class="detail-label">Status</span>
+                            <span class="status-upcoming">Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Choose TathyaUniverse?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Updates</h3>
+                    <p class="feature-text">Our platform provides the latest IPO details including company names, issue dates, closing dates, price bands, and even company logos — updated instantly from the backend.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3 class="feature-title">Indian Market Focus</h3>
+                    <p class="feature-text">TathyaUniverse is built specifically for the Indian IPO market. All features are designed around Indian regulations, investor needs, and stock market trends.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Applications</h3>
+                    <p class="feature-text">Powered by Django and PostgreSQL, the system ensures strong security with CSRF protection, input validation, and restricted file uploads — giving users trustworthy IPO data.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">Seamless User Experience</h3>
+                    <p class="feature-text">Investors can access IPO information directly from the homepage without needing to register or log in. Data is displayed in a clean and easy-to-read format for quick decision-making.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="feature-title">Verified & Managed Data</h3>
+                    <p class="feature-text">IPO details are added and updated only through the secure Django admin panel. This ensures accuracy, authenticity, and up-to-date records for all IPOs listed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">API Support for Developers</h3>
+                    <p class="feature-text">Through our built-in REST API, external applications and developers can directly fetch IPO data. This makes TathyaUniverse not just a platform for investors, but also a valuable data source for fintech apps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Analysis Section -->
+    <section id="ipo-market" class="section">
+        <div class="container">
+            <h2 class="section-title">Indian IPO Market Insights</h2>
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab(event, 'market-trends')">Market Trends</button>
+                    <button class="tab-button" onclick="switchTab(event, 'ipo-performance')">IPO Performance</button>
+                    <button class="tab-button" onclick="switchTab(event, 'sector-analysis')">Sector Analysis</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="market-trends" class="tab-panel active">
+                        <div class="tab-items">
+                            <div class="tab-item">
+                                <h4>Record Year for IPOs</h4>
+                                <p>2024 has seen unprecedented IPO activity with over 50 companies raising ₹75,000+ crores, marking the highest fundraising year in Indian capital markets history.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Retail Participation Growth</h4>
+                                <p>Retail investor participation has grown by 180% compared to 2023, with average application values increasing significantly across all IPO categories.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Tech Dominance</h4>
+                                <p>Technology and fintech companies continue to dominate the IPO landscape, accounting for 35% of total issue size and commanding premium valuations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="ipo-performance" class="tab-panel">
+                        <div class="tab-items">
+                            <div class="tab-item">
+                                <h4>Average Listing Gains</h4>
+                                <p>IPOs in 2024 have delivered an average listing gain of 22%, with mainboard issues outperforming SME segment consistently.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Top Performers</h4>
+                                <p>Leading performers include renewable energy, pharmaceutical, and technology companies, with some delivering over 90% listing gains.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Long-term Returns</h4>
+                                <p>12-month post-listing analysis shows 68% of 2023 IPOs trading above their issue price, indicating strong fundamental performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sector-analysis" class="tab-panel">
+                        <div class="tab-items">
+                            <div class="tab-item">
+                                <h4>Technology Sector</h4>
+                                <p>IT services and software companies continue to attract premium valuations, with average P/E ratios of 28-35x reflecting strong growth expectations.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Financial Services</h4>
+                                <p>NBFC and fintech IPOs have shown consistent performance with stable valuations and strong institutional interest from both domestic and foreign investors.</p>
+                            </div>
+                            <div class="tab-item">
+                                <h4>Renewable Energy</h4>
+                                <p>Clean energy companies are commanding significant investor interest, supported by government policy initiatives and ESG investment trends.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"This IPO dashboard makes it so easy to track upcoming issues. I can quickly check price bands, dates, and allotments without digging through multiple websites."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RS</div>
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <p>Retail Investor, Mumbai</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a financial advisor, I need reliable data. This platform's accurate IPO listings save me hours of manual research every week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PP</div>
+                        <div class="author-info">
+                            <h4>Priya Patel</h4>
+                            <p>Financial Advisor, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The clean interface is my favorite part. I can instantly see which IPOs are open, closing soon, or already listed — all in one place."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <h4>Arjun Kumar</h4>
+                            <p>Software Engineer, Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        What is an IPO?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>An Initial Public Offering (IPO) is the process through which a private company offers its shares to the public for the first time. This allows the company to raise capital from public investors and get listed on stock exchanges.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How do I view IPO details on TathyaUniverse?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply visit the homepage. All IPOs are listed with details like company name, issue dates, and price bands — updated directly from the database.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do I need an account to access IPO data?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, IPO listings are publicly visible. You don't need to log in to browse or track IPOs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Who updates the IPO information?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our admin team adds and manages IPO data through a secure Django admin panel. Updates reflect instantly on the website.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Is there a fee for using TathyaUniverse?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our basic features including IPO tracking, alerts, and market analysis are completely free. We offer premium subscription plans for advanced features like expert recommendations, priority customer support, and automated IPO applications.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Can developers integrate TathyaUniverse IPO data into their own apps?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. TathyaUniverse provides an API powered by Django REST Framework. Developers can fetch IPO data (like company details, price band, and dates) securely and use it in their own financial dashboards, apps, or research tools.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TathyaUniverse</h3>
+                    <p class="footer-text">India's most comprehensive IPO platform providing real-time data, expert analysis, and seamless application experience for retail investors.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            456 Financial District, BKC, Mumbai
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            +91 22 6128 1234
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            support@tathyauniverse.com
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            Mon-Fri: 9:30 AM - 6:30 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 TathyaUniverse Technologies Pvt. Ltd.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Tab Functionality
+        function switchTab(evt, tabName) {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            // Remove active class from all buttons and panels
+            tabButtons.forEach(button => button.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            // Add active class to clicked button and corresponding panel
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // FAQ Toggle Functionality
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('active');
+            });
+
+            // Toggle current FAQ item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+                faqAnswer.classList.add('active');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.ipo-card, .feature-card, .testimonial-card, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
